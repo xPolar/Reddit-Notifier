@@ -1,0 +1,15 @@
+{
+  "name": "reddit-notifier",
+  "version": "1.0.0",
+  "description": "Whenever a post is added to a sub reddit post it into a Discord channel with a webhook.",
+  "main": "index.js",
+  "scripts": {
+    "notify": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "request": "^2.88.2"
+  }
+}
