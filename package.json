@@ -2,14 +2,25 @@
   "name": "reddit-notifier",
   "version": "1.0.0",
   "description": "Whenever a post is added to a sub reddit post it into a Discord channel with a webhook.",
-  "main": "index.js",
+  "main": "dist/src/index.js",
+  "type": "module",
   "scripts": {
-    "notify": "node ."
+    "build": "tsc && node .",
+    "start": "node ."
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "@sentry/types": "^6.15.0",
+    "@types/bl": "^5.0.2",
+    "@types/node": "^16.11.8",
+    "typescript": "^4.5.2"
+  },
   "dependencies": {
-    "discord.js": "^12.5.3",
-    "request": "^2.88.2"
+    "@sentry/node": "^6.15.0",
+    "colorette": "^2.0.16",
+    "dotenv": "^10.0.0",
+    "dotenv-extended": "^2.9.0",
+    "petitio": "^1.4.0"
   }
 }

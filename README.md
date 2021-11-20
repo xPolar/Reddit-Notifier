@@ -1,8 +1,21 @@
 # Reddit-Notifier
-Scrape posts off of a sub reddit and post them into a Discord channel through a webhook.
+
+Scrape posts off of subreddits and post them into a Discord channel through a webhook.
 
 ## Setup
-The set up proccess is extremely easy, all you really have to do is edit the `data.json` with the reddit you want to scrape (Make sure you remove the r/), the webhook ID and token, and then you can run `npm run notify`.
 
-## Support
-If you need any support please feel free to join my Discord [here](https://discord.gg/pSWvn22Hyw)
+To set this system up please fill in the the `.env` file with what subreddits you want to scrape as well as the Discord webhook. (Sentry DSN is optional, good for error handling).
+Once set up it should look like the following.
+
+```.env
+REDDITS_TO_SCRAPE=REDDIT1,REDDIT2,REDDIT3
+DISCORD_WEBHOOK=https://discord.com/api/webhooks/webhookId/webhookToken
+SENTRY_DSN="https://something@something.ingest.sentry.io/something"
+```
+
+Once your .env is filled make sure to run `npm i`, then to build and run our TypeScript we can run `npm run build`, this will compile our TypeScript and then run it.
+If you want to just run out compiled TypeScript run `npm run start`.
+
+## Join The Following Server For Support
+
+[![widget](https://inv.wtf/widget/polar)](https://inv.wtf/polar)

@@ -1,4 +1,4 @@
-data.json
+.env
 .vscode/
-package-lock.json
 node_modules/
+dist/
