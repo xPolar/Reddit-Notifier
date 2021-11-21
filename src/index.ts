@@ -41,7 +41,7 @@ setInterval(async () => {
 							},
 							title: trunc(post.data.title, 256),
 							url: post.data.url,
-							description: trunc(post.data.selftext, 4000),
+							description: trunc(post.data.selftext.replace("&#x200B;", ""), 4000),
 							color: parseInt("FF3F18", 16),
 							image: post.data.preview
 								? post.data.preview.images[0]!.source.url
@@ -68,7 +68,7 @@ setInterval(async () => {
 
 function trunc(string: string, maxLength: number): string {
 	if (string.length > maxLength) {
-		return `${string.substring(0, maxLength - 3)}...`
+		return `${string.substring(0, maxLength - 3)}...`;
 	}
 	return string;
 }
