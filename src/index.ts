@@ -3,6 +3,7 @@ import { load } from "dotenv-extended";
 import Logger from "../lib/classes/Logger.js";
 import { NewPosts } from "../typings/index.js";
 import { format } from "util";
+import { truncate } from "fs";
 
 load();
 
@@ -38,9 +39,9 @@ setInterval(async () => {
 								name: `u/${post.data.author}`,
 								url: `https://reddit.com/u/${post.data.author}`
 							},
-							title: post.data.title,
+							title: trunc(post.data.title, 256),
 							url: post.data.url,
-							description: post.data.selftext,
+							description: trunc(post.data.selftext, 4000),
 							color: parseInt("FF3F18", 16),
 							image: post.data.preview
 								? post.data.preview.images[0]!.source.url
@@ -50,7 +51,7 @@ setInterval(async () => {
 				})
 				.send();
 			if (r.statusCode !== 204) {
-				Logger.error(`Discord returned ${r.statusCode}`);
+				Logger.error(`Discord returned ${r.statusCode} ${r.text()}`);
 				Logger.sentry.captureWithExtras(new Error("Failed to send Discord webhook."), {
 					"Status Code": r.statusCode,
 					"Sub Reddit": post.data.subreddit_name_prefixed,
@@ -64,3 +65,10 @@ setInterval(async () => {
 		}
 	}
 }, 5000);
+
+function trunc(string: string, maxLength: number): string {
+	if (string.length > maxLength) {
+		return `${string.substring(0, maxLength - 3)}...`
+	}
+	return string;
+}
